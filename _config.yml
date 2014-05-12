@@ -1,0 +1,22 @@
+# Dependencies
+markdown:         redcarpet
+pygments:         true
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Developer Handbook
+tagline:          'A Jekyll theme'
+description:      'Developer Handbook'
+url:              http://developers.oomphinc.com
+
+author:
+  name:           'Nicholas Blanchard'
+  url:            http://oomphinc.com
+
+# Custom vars
+version:          2.0.0
+
+github:
+  repo:           https://github.com/poole/hyde
