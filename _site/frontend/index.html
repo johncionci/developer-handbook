@@ -10,7 +10,7 @@
 
   <title>
     
-      FrontEnd Standards &middot; Developer Handbook
+      Frontend Standards &middot; Developer Handbook
     
   </title>
 
@@ -56,7 +56,7 @@
         
           
             <li class="sidebar-nav-item active">
-              <a href="/frontend/">FrontEnd Standards</a>
+              <a href="/frontend/">Frontend Standards</a>
             </li>
           
         
@@ -86,13 +86,16 @@
 
     <div class="content container">
       <div class="page">
-  <h1 class="page-title">FrontEnd Standards</h1>
-  <h2>SASS/CSS best practices</h2>
+  <h1 class="page-title">Frontend Standards</h1>
+  <p><a href="https://docs.google.com/a/thinkoomph.com/document/d/19PMZOq4KUQa9BYkbfmevRWf5DaDo52GDPQlczMa20_k/edit#">Guidelines</a>
+<a href="https://docs.google.com/a/thinkoomph.com/document/d/1hgiQ7hrnfy7gWO9bv1twdcyyvBk2oSNekFxUZgunrGA/edit#">Tech Stack</a></p>
+
+<h2>Css</h2>
 
 <p>Don&#39;t over qualify class or ID selectors. On new projects style elements with classes
 and tags only. Leave IDs for javascript hooks. On previous projects to</p>
 
-<h4>!important</h4>
+<h5>!important</h5>
 
 <p>There is only one use case for !important. The use case is to style a plugin or element
 not in your code base which has a inline style or a !important itself. If you have to use an !important
@@ -100,34 +103,65 @@ please add a comment after it stating what you are overridding.</p>
 
 <div class="highlight"><pre><code class="scss"><span class="nc">.disqus</span> <span class="nt">h2</span> <span class="p">{</span>
     <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span> <span class="nv">!important</span><span class="p">;</span> <span class="c1">// Overriding inline style on Disqus plugin</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
-<h4>Z-index</h4>
+<h5>Z-index</h5>
 
-<p>If you have a Z-index with a really high number please leave a comment to let people
+<p>Only use high z-indexs when needed. If you use one please leave a comment to let people
 know the reason for it.</p>
 
 <div class="highlight"><pre><code class="scss"><span class="nt">header</span> <span class="p">{</span>
     <span class="na">position</span><span class="o">:</span> <span class="no">fixed</span><span class="p">;</span>
     <span class="na">z-index</span><span class="o">:</span> <span class="mi">99999999</span><span class="p">;</span> <span class="c1">// This sticky-nav needs to be above google ads which can have a very high z-index</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
-<h4>Nesting in SASS</h4>
+<h2>Preprocessors</h2>
 
-<p>You should try and never nest your SASS more than three layers deep.</p>
+<h3>Sass</h3>
 
-<div class="highlight"><pre><code class="scss"><span class="nc">.header</span> <span class="p">{</span>
-  <span class="nc">.nav-bar</span> <span class="p">{</span>
-    <span class="nt">li</span> <span class="p">{</span>
-      <span class="c1">// no more!</span>
+<p>We use Sass as our default CSS preprocessor (in its dialect SCSS). Sass is &quot;the most mature, stable, and powerful
+professional grade CSS extension language in the world.&quot; You should always have the latest version of Sass installed.
+Visit <a href="http://http://sass-lang.com/">Sass</a> to learn more.</p>
+
+<p><strong>Never edit CSS files directly.</strong> You should always edit the corresponding <code>.scss</code> file. If you are
+not familiar with SCSS you can write pure CSS which is actually valid SCSS.</p>
+
+<h5>Nesting</h5>
+
+<p>You should try and never nest your SASS more than three layers deep. This will lead to long and ultra specific selectors
+in your comiled CSS. As of Sass 3.3 you can use @at-root to break out of your nesting at anytime.</p>
+
+<div class="highlight"><pre><code class="scss"><span class="k">@media</span> <span class="nt">print</span> <span class="p">{</span>
+  <span class="nc">.page</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="mi">8</span><span class="kt">in</span> <span class="nv">!important</span><span class="p">;</span>
+    <span class="k">@at-root</span> <span class="o">(</span><span class="nt">without</span><span class="nd">:</span> <span class="nt">media</span><span class="o">)</span> <span class="p">{</span>
+      <span class="na">width</span><span class="o">:</span> <span class="mi">960</span><span class="kt">px</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
-<h2>Gulp.js</h2>
+<p>outputs</p>
+
+<div class="highlight"><pre><code class="css"><span class="k">@media</span> <span class="nt">print</span> <span class="p">{</span>
+  <span class="nc">.page</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">8in</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nc">.page</span> <span class="p">{</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">960px</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<h2>Frameworks</h2>
+
+<p>We use Foundation as our default CSS frontend framework. Foundation is &quot;The most advanced responsive
+front-end framework in the world.&quot; It provides a fast simple way to protype and build our sites.
+Visit <a href="http://http://foundation.zurb.com/">Foundation</a> to learn more.</p>
+
+<h2>Javascript</h2>
+
+<h2>Build Systems</h2>
+
+<h3>Gulp.js</h3>
 
 <p><a href="http://gulpjs.com/"><img src="https://raw2.github.com/gulpjs/artwork/master/gulp-2x.png" width="80" alt="Built with Gulp"></a></p>
 
@@ -148,32 +182,22 @@ know the reason for it.</p>
 </ul>
 
 <p>After you&#39;ve set this stuff up please run</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">$ npm install -g gulp
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ npm install -g gulp
 </code></pre></div>
 <p>Open your .bash<em>profile or .bash</em>rc file and enter the following line</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">ulimit -S -n 8192
+<div class="highlight"><pre><code class="language-text" data-lang="text">ulimit -S -n 8192
 </code></pre></div>
 <p>This installs the Gulp command line tools
 Afterwards please run</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">$ npm install
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ npm install
 </code></pre></div>
 <p>in your project&#39;s directory.
 This will install all the things you need for running the gulp-tasks
 automatically.</p>
 
 <p>Now Gulp should be installed and all you need to type is gulp to run it</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">$ gulp
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ gulp
 </code></pre></div>
-<h2>SASS</h2>
-
-<p>We are currently working with <a href="http://sass-lang.com/">Sass</a> (in its dialect
-SCSS) and do not use CSS directly. Please do not edit the CSS-files in any case
-but search the corresponding <code>.scss</code> file and edit it accordingly. If you are
-not familiar with SCSS you can write pure CSS which is actually valid SCSS.</p>
-
-<p>You can find more information about the installation process of Sass and the
-usage of SCSS in the <a href="http://sass-lang.com/tutorial.html">Sass Tutorial</a>.</p>
-
 </div>
 
     </div>

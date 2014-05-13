@@ -56,7 +56,7 @@
         
           
             <li class="sidebar-nav-item">
-              <a href="/frontend/">FrontEnd Standards</a>
+              <a href="/frontend/">Frontend Standards</a>
             </li>
           
         
@@ -109,15 +109,13 @@ Your text editor should be able to display whitespace. Turn on this option to sh
 
 <div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="s1">&#39;bar &#39;</span> <span class="o">.</span> <span class="s1">&#39;bacon&#39;</span> <span class="o">==</span> <span class="s1">&#39;bar bacon&#39;</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nv">$truth_serum</span> <span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Code</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <p>Whitespace should not be given inside array indices, but any expressions within should follow the above whitespace rules:</p>
 
 <div class="highlight"><pre><code class="php"><span class="nv">$foo</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span> <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="o">=&gt;</span> <span class="s1">&#39;five&#39;</span> <span class="p">);</span>
 <span class="nv">$bar</span> <span class="o">=</span> <span class="nv">$foo</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">];</span>  <span class="c1">// NOT $foo[ &#39;bar&#39; ];</span>
-<span class="nv">$five</span> <span class="o">=</span> <span class="nv">$foo</span><span class="p">[</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span> <span class="c1">// NOT $foo[3+2];</span>
-</code></pre></div>
+<span class="nv">$five</span> <span class="o">=</span> <span class="nv">$foo</span><span class="p">[</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span> <span class="c1">// NOT $foo[3+2];</span></code></pre></div>
 
 <h4>Blocks</h4>
 
@@ -125,8 +123,7 @@ Your text editor should be able to display whitespace. Turn on this option to sh
 
 <div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="nv">$x</span> <span class="o">==</span> <span class="s1">&#39;bar&#39;</span> <span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Code</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <ul>
 <li>That is, control statement, NO SPACE, open-parenthesis, SPACE, statement, SPACE, close-parenthesis, SPACE, open-brace, NEWLINE.</li>
@@ -137,20 +134,21 @@ Your text editor should be able to display whitespace. Turn on this option to sh
 <div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="nv">$foo</span> <span class="p">)</span> <span class="o">:</span>
 <span class="k">endif</span><span class="p">;</span>
 <span class="k">while</span><span class="p">(</span> <span class="nv">$condition</span> <span class="p">)</span> <span class="o">:</span>
-<span class="k">endwhile</span><span class="p">;</span>
-</code></pre></div>
+<span class="k">endwhile</span><span class="p">;</span></code></pre></div>
 
 <ul>
-<li><p>This leads to code that is less consistent and harder to read. There&#39;s no reason you must write it this way for &quot;the loop.&quot; Break the habit.</p>
+<li>This leads to code that is less consistent and harder to read. There&#39;s no reason you must write it this way for &quot;the loop.&quot; Break the habit.</li>
+</ul>
 
-<p>*Closing braces should ALWAYS appear on their own line. (This differs from WP coding standards)</p></li>
-<li><p>Control blocks with a single code statement within should always be written with braces:</p></li>
+<p>*Closing braces should ALWAYS appear on their own line. (This differs from WP coding standards)</p>
+
+<ul>
+<li>Control blocks with a single code statement within should always be written with braces:</li>
 </ul>
 
 <div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="nv">$condition</span> <span class="p">)</span> <span class="p">{</span>
   <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <p>Chained control statements should ALL use braces if ANY one of the code blocks has more than one statement:</p>
 
@@ -159,8 +157,7 @@ Your text editor should be able to display whitespace. Turn on this option to sh
 <span class="k">elseif</span><span class="p">(</span> <span class="nv">$x</span> <span class="o">==</span> <span class="s1">&#39;baz&#39;</span> <span class="p">)</span>
   <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;quux&#39;</span><span class="p">;</span>
 <span class="k">else</span>
-  <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;brains&#39;</span><span class="p">;</span>
-</code></pre></div>
+  <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;brains&#39;</span><span class="p">;</span></code></pre></div>
 
 <p>vs.</p>
 
@@ -173,8 +170,7 @@ Your text editor should be able to display whitespace. Turn on this option to sh
 <span class="p">}</span>
 <span class="k">else</span> <span class="p">{</span>
   <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;brains&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <h4>PHP: The One True Singleton</h4>
 
@@ -193,8 +189,7 @@ Your text editor should be able to display whitespace. Turn on this option to sh
   <span class="c1">// CPT registration, custom taxonomy registration, actions, filters</span>
   <span class="k">private</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
-<span class="nx">Theme_Feature</span><span class="o">::</span><span class="na">instance</span><span class="p">();</span>
-</code></pre></div>
+<span class="nx">Theme_Feature</span><span class="o">::</span><span class="na">instance</span><span class="p">();</span></code></pre></div>
 
 <h4>HTML</h4>
 
@@ -212,8 +207,7 @@ Short tags made up of many parts can be built in PHP.</li>
 <span class="x">    This is a long piece of &lt;span class=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">esc_attr</span><span class="p">(</span> <span class="nb">join</span><span class="p">(</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nv">$classes</span> <span class="p">)</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="x">&quot;&gt;some text&lt;/span&gt;</span>
 <span class="x">    that should be captured by &lt;em&gt;ob_start()&lt;/em&gt; and &lt;em&gt;ob_get_clean()&lt;/em&gt;</span>
 <span class="x">   &lt;/p&gt;</span>
-<span class="cp">&lt;?php</span> <span class="nv">$markup</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div>
+<span class="cp">&lt;?php</span> <span class="nv">$markup</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
 <ul>
 <li>HTML attribute values must ALWAYS be written with double-quotes, and always lower-case, with no spacing: attr=&quot;value&quot;</li>
@@ -221,19 +215,16 @@ Short tags made up of many parts can be built in PHP.</li>
 
 <p>Correct</p>
 
-<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo bar&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo bar&quot;</span><span class="nt">&gt;&lt;/div&gt;</span></code></pre></div>
 
 <p>Incorrect:</p>
 
-<div class="highlight"><pre><code class="html"><span class="nt">&lt;DIV</span> <span class="na">class=</span><span class="s">&#39;foo bar&#39;</span><span class="nt">&gt;&lt;/DIV&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;DIV</span> <span class="na">class=</span><span class="s">&#39;foo bar&#39;</span><span class="nt">&gt;&lt;/DIV&gt;</span></code></pre></div>
 
 <p>Any PHP variables emitted into HTML must ALWAYS be escaped with one of the escaping functions: esc<em>html() or esc</em>attr()
 Javascript variables should be set using encode<em>json() over esc</em>js(). json_encode() is more type-safe and can bring over any type of variable into a Javascript representation and will quote properly when necessary:</p>
 
-<div class="highlight"><pre><code class="php"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="k">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span> <span class="nv">$foo</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="x">;&lt;/script&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="php"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="k">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span> <span class="nv">$foo</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="x">;&lt;/script&gt;</span></code></pre></div>
 
 <p>Within WordPress, JavaScript variables should be provided to the page using wp<em>localize</em>script() instead of direct injection of JavaScript code as above.</p>
 

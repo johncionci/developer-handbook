@@ -1,15 +1,17 @@
 ---
 layout: page
-title: FrontEnd Standards
+title: Frontend Standards
 ---
 
-## SASS/CSS best practices
+<a href="https://docs.google.com/a/thinkoomph.com/document/d/19PMZOq4KUQa9BYkbfmevRWf5DaDo52GDPQlczMa20_k/edit#">Guidelines</a>
+<a href="https://docs.google.com/a/thinkoomph.com/document/d/1hgiQ7hrnfy7gWO9bv1twdcyyvBk2oSNekFxUZgunrGA/edit#">Tech Stack</a>
+
+## Css
 
 Don't over qualify class or ID selectors. On new projects style elements with classes
 and tags only. Leave IDs for javascript hooks. On previous projects to
 
-
-#### !important
+##### !important
 There is only one use case for !important. The use case is to style a plugin or element
 not in your code base which has a inline style or a !important itself. If you have to use an !important
 please add a comment after it stating what you are overridding.
@@ -21,7 +23,7 @@ please add a comment after it stating what you are overridding.
 {% endhighlight %}
 
 
-#### Z-index
+##### Z-index
 Only use high z-indexs when needed. If you use one please leave a comment to let people
 know the reason for it.
 
@@ -32,23 +34,55 @@ header {
 }
 {% endhighlight %}
 
+## Preprocessors
 
-#### Nesting in SASS
-You should try and never nest your SASS more than three layers deep.
+### Sass
+We use Sass as our default CSS preprocessor (in its dialect SCSS). Sass is "the most mature, stable, and powerful
+professional grade CSS extension language in the world." You should always have the latest version of Sass installed.
+Visit [Sass](http://http://sass-lang.com/) to learn more.
+
+**Never edit CSS files directly.** You should always edit the corresponding `.scss` file. If you are
+not familiar with SCSS you can write pure CSS which is actually valid SCSS.
+
+##### Nesting
+You should try and never nest your SASS more than three layers deep. This will lead to long and ultra specific selectors
+in your comiled CSS. As of Sass 3.3 you can use @at-root to break out of your nesting at anytime.
 
 {% highlight scss %}
-.header {
-  .nav-bar {
-    li {
-      // no more!
+@media print {
+  .page {
+    width: 8in !important;
+    @at-root (without: media) {
+      width: 960px;
     }
   }
 }
 {% endhighlight %}
 
-## Javascript best practices
+outputs
 
-## Gulp.js
+{% highlight css %}
+@media print {
+  .page {
+    width: 8in !important;
+  }
+}
+.page {
+  width: 960px;
+}
+{% endhighlight %}
+
+## Frameworks
+
+We use Foundation as our default CSS frontend framework. Foundation is "The most advanced responsive
+front-end framework in the world." It provides a fast simple way to protype and build our sites.
+Visit [Foundation](http://http://foundation.zurb.com/) to learn more.
+
+## Javascript
+
+## Build Systems
+
+### Gulp.js
 
 
 <a href="http://gulpjs.com/"><img src="https://raw2.github.com/gulpjs/artwork/master/gulp-2x.png" width="80" alt="Built with Gulp"></a>
@@ -86,15 +120,3 @@ automatically.
 Now Gulp should be installed and all you need to type is gulp to run it
 
 	$ gulp
-
-
-
-## SASS
-
-We are currently working with [Sass](http://sass-lang.com/) (in its dialect
-SCSS) and do not use CSS directly. Please do not edit the CSS-files in any case
-but search the corresponding `.scss` file and edit it accordingly. If you are
-not familiar with SCSS you can write pure CSS which is actually valid SCSS.
-
-You can find more information about the installation process of Sass and the
-usage of SCSS in the [Sass Tutorial](http://sass-lang.com/tutorial.html).
