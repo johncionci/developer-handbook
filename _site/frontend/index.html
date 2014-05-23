@@ -39,9 +39,6 @@
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item">
-        <a href="/">Home</a>
-      </li>
 
       
 
@@ -64,15 +61,7 @@
         
           
             <li class="sidebar-nav-item">
-              <a href="/">General Standards</a>
-            </li>
-          
-        
-      
-        
-          
-            <li class="sidebar-nav-item">
-              <a href="/wordpress/">WordPress Standards</a>
+              <a href="/">WordPress Standards</a>
             </li>
           
         
@@ -87,13 +76,10 @@
     <div class="content container">
       <div class="page">
   <h1 class="page-title">Frontend Standards</h1>
-  <p><a href="https://docs.google.com/a/thinkoomph.com/document/d/19PMZOq4KUQa9BYkbfmevRWf5DaDo52GDPQlczMa20_k/edit#">Guidelines</a>
+  <p><a href="https://docs.google.com/a/thinkoomph.com/document/d/19PMZOq4KUQa9BYkbfmevRWf5DaDo52GDPQlczMa20_k/edit#">Guidelines</a><br />
 <a href="https://docs.google.com/a/thinkoomph.com/document/d/1hgiQ7hrnfy7gWO9bv1twdcyyvBk2oSNekFxUZgunrGA/edit#">Tech Stack</a></p>
 
 <h2>Css</h2>
-
-<p>Don&#39;t over qualify class or ID selectors. On new projects style elements with classes
-and tags only. Leave IDs for javascript hooks. On previous projects to</p>
 
 <h5>!important</h5>
 
@@ -103,7 +89,8 @@ please add a comment after it stating what you are overridding.</p>
 
 <div class="highlight"><pre><code class="scss"><span class="nc">.disqus</span> <span class="nt">h2</span> <span class="p">{</span>
     <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span> <span class="nv">!important</span><span class="p">;</span> <span class="c1">// Overriding inline style on Disqus plugin</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 
 <h5>Z-index</h5>
 
@@ -113,7 +100,8 @@ know the reason for it.</p>
 <div class="highlight"><pre><code class="scss"><span class="nt">header</span> <span class="p">{</span>
     <span class="na">position</span><span class="o">:</span> <span class="no">fixed</span><span class="p">;</span>
     <span class="na">z-index</span><span class="o">:</span> <span class="mi">99999999</span><span class="p">;</span> <span class="c1">// This sticky-nav needs to be above google ads which can have a very high z-index</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 
 <h2>Preprocessors</h2>
 
@@ -138,7 +126,8 @@ in your comiled CSS. As of Sass 3.3 you can use @at-root to break out of your ne
       <span class="na">width</span><span class="o">:</span> <span class="mi">960</span><span class="kt">px</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 
 <p>outputs</p>
 
@@ -149,7 +138,8 @@ in your comiled CSS. As of Sass 3.3 you can use @at-root to break out of your ne
 <span class="p">}</span>
 <span class="nc">.page</span> <span class="p">{</span>
   <span class="k">width</span><span class="o">:</span> <span class="m">960px</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 
 <h2>Frameworks</h2>
 
@@ -182,21 +172,21 @@ Visit <a href="http://http://foundation.zurb.com/">Foundation</a> to learn more.
 </ul>
 
 <p>After you&#39;ve set this stuff up please run</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ npm install -g gulp
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ npm install -g gulp
 </code></pre></div>
 <p>Open your .bash<em>profile or .bash</em>rc file and enter the following line</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">ulimit -S -n 8192
+<div class="highlight"><pre><code class="text language-text" data-lang="text">ulimit -S -n 8192
 </code></pre></div>
 <p>This installs the Gulp command line tools
 Afterwards please run</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ npm install
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ npm install
 </code></pre></div>
 <p>in your project&#39;s directory.
 This will install all the things you need for running the gulp-tasks
 automatically.</p>
 
 <p>Now Gulp should be installed and all you need to type is gulp to run it</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ gulp
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ gulp
 </code></pre></div>
 </div>
 

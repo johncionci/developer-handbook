@@ -10,7 +10,7 @@
 
   <title>
     
-      General Standards &middot; Developer Handbook
+      WordPress Standards &middot; Developer Handbook
     
   </title>
 
@@ -39,9 +39,6 @@
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item">
-        <a href="/">Home</a>
-      </li>
 
       
 
@@ -64,15 +61,7 @@
         
           
             <li class="sidebar-nav-item active">
-              <a href="/">General Standards</a>
-            </li>
-          
-        
-      
-        
-          
-            <li class="sidebar-nav-item">
-              <a href="/wordpress/">WordPress Standards</a>
+              <a href="/">WordPress Standards</a>
             </li>
           
         
@@ -86,8 +75,166 @@
 
     <div class="content container">
       <div class="page">
-  <h1 class="page-title">General Standards</h1>
-  <p>This is where our general standards will go</p>
+  <h1 class="page-title">WordPress Standards</h1>
+  <p>Since the bulk of our code is for the WordPress platform and much of it is also reviewed by WordPress.com VIP, this is the most important platform to have consistency on.
+Source link: <a href="http://codex.wordpress.org/WordPress_Coding_Standards">WordPress Coding Standards</a>
+Also see our WordPress Best Practices document.</p>
+
+<h2>PHP Formatting:</h2>
+
+<h4>Whitespace:</h4>
+
+<ul>
+<li><p>Always use TABS instead of SPACES to indent code:
+This reduces code size and allows everyone to choose their preferred tab stop width.
+Exception: Indenting within a line. This should always be done with SPACES so that things line up the same for everybody.</p></li>
+<li><p>NEVER leave whitespace at the end of a line, or have whitespace on an empty line.
+Your text editor should be able to display whitespace. Turn on this option to show where the whitespace is.</p></li>
+<li><p>Use whitespace appropriately and consistently. Blocks of related code should be grouped and separated by blank lines.</p></li>
+<li><p>The standards below differ from the official WordPress coding standards:</p></li>
+</ul>
+
+<p>Whitespace should be used around ALL binary operators, but NOT after unary operators like ! or -. Thus:</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="s1">&#39;bar &#39;</span> <span class="o">.</span> <span class="s1">&#39;bacon&#39;</span> <span class="o">==</span> <span class="s1">&#39;bar bacon&#39;</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nv">$truth_serum</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Code</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Whitespace should not be given inside array indices, but any expressions within should follow the above whitespace rules:</p>
+
+<div class="highlight"><pre><code class="php"><span class="nv">$foo</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span> <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="o">=&gt;</span> <span class="s1">&#39;five&#39;</span> <span class="p">);</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="nv">$foo</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">];</span>  <span class="c1">// NOT $foo[ &#39;bar&#39; ];</span>
+<span class="nv">$five</span> <span class="o">=</span> <span class="nv">$foo</span><span class="p">[</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span> <span class="c1">// NOT $foo[3+2];</span>
+</code></pre></div>
+
+<h4>Blocks</h4>
+
+<p>Control blocks must be written as such:</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="nv">$x</span> <span class="o">==</span> <span class="s1">&#39;bar&#39;</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Code</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>That is, control statement, NO SPACE, open-parenthesis, SPACE, statement, SPACE, close-parenthesis, SPACE, open-brace, NEWLINE.</li>
+</ul>
+
+<h5>NEVER EVER EVER EVER EVER use the alternate PHP control statement syntax:</h5>
+
+<div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="nv">$foo</span> <span class="p">)</span> <span class="o">:</span>
+<span class="k">endif</span><span class="p">;</span>
+<span class="k">while</span><span class="p">(</span> <span class="nv">$condition</span> <span class="p">)</span> <span class="o">:</span>
+<span class="k">endwhile</span><span class="p">;</span>
+</code></pre></div>
+
+<ul>
+<li><p>This leads to code that is less consistent and harder to read. There&#39;s no reason you must write it this way for &quot;the loop.&quot; Break the habit.</p></li>
+<li><p>Closing braces should ALWAYS appear on their own line. (This differs from WP coding standards)</p></li>
+</ul>
+
+<p>Control blocks should always be written with braces:</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">if</span><span class="p">(</span> <span class="nv">$condition</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(</span> <span class="nv">$x</span> <span class="o">==</span> <span class="s1">&#39;bar&#39;</span> <span class="p">)</span> <span class="p">{</span>
+   <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">elseif</span><span class="p">(</span> <span class="nv">$x</span> <span class="o">==</span> <span class="s1">&#39;baz&#39;</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;quux&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;brains&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4>PHP: The One True Singleton</h4>
+
+<p>This singleton is the most robust and compact implemetation I have found. It prevents multiple instantiation explicitly. We should always use this for any singletons in the future.</p>
+
+<div class="highlight"><pre><code class="php"><span class="k">class</span> <span class="nc">Theme_Feature</span> <span class="p">{</span>
+  <span class="c1">// Define and register singleton</span>
+  <span class="k">private</span> <span class="k">static</span> <span class="nv">$instance</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">instance</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">self</span><span class="o">::</span><span class="nv">$instance</span> <span class="p">)</span>
+      <span class="nx">self</span><span class="o">::</span><span class="nv">$instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Theme_Feature</span><span class="p">;</span> <span class="c1">// MUST BE UPDATED WITH CLASS NAME</span>
+    <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$instance</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// Disallow clone() of object</span>
+  <span class="k">private</span> <span class="k">function</span> <span class="nf">__clone</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+  <span class="c1">// CPT registration, custom taxonomy registration, actions, filters</span>
+  <span class="k">private</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">Theme_Feature</span><span class="o">::</span><span class="na">instance</span><span class="p">();</span>
+</code></pre></div>
+
+<h4>HTML</h4>
+
+<p>HTML should be indented with TABS, not SPACES, much like PHP.
+HTML intermingled with PHP should start at the same indentation level as the PHP.
+HTML embedded in PHP should for the most part be written OUTSIDE of PHP blocks.
+Short tags made up of many parts can be built in PHP.</p>
+
+<p>If you need to capture long chunks of HTML into an output, use ob<em>start() and ob</em>get_clean():</p>
+
+<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span> <span class="nb">ob_start</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">  &lt;p&gt;</span>
+<span class="x">    This is a long piece of &lt;span class=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">esc_attr</span><span class="p">(</span> <span class="nb">join</span><span class="p">(</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nv">$classes</span> <span class="p">)</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="x">&quot;&gt;some text&lt;/span&gt;</span>
+<span class="x">    that should be captured by &lt;em&gt;ob_start()&lt;/em&gt; and &lt;em&gt;ob_get_clean()&lt;/em&gt;</span>
+<span class="x">   &lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="nv">$markup</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div>
+
+<ul>
+<li>HTML attribute values must ALWAYS be written with double-quotes, and always lower-case, with no spacing: attr=&quot;value&quot;</li>
+</ul>
+
+<p>Correct</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo bar&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div>
+
+<p>Incorrect</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;DIV</span> <span class="na">class=</span><span class="s">&#39;foo bar&#39;</span><span class="nt">&gt;&lt;/DIV&gt;</span>
+</code></pre></div>
+
+<p>Any PHP variables emitted into HTML must ALWAYS be escaped with one of the escaping functions: esc<em>html() or esc</em>attr()
+Javascript variables should be set using encode<em>json() over esc</em>js(). json_encode() is more type-safe and can bring over any type of variable into a Javascript representation and will quote properly when necessary:</p>
+
+<div class="highlight"><pre><code class="php"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="k">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span> <span class="nv">$foo</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="x">;&lt;/script&gt;</span>
+</code></pre></div>
+
+<p>Within WordPress, JavaScript variables should be provided to the page using wp<em>localize</em>script() instead of direct injection of JavaScript code as above.</p>
+
+<h4>Translation Strings</h4>
+
+<p>Unless a theme needs to be translation-ready, there&#39;s never any need to leave the <em>e(), _</em>(), esc<em>attr</em>e(), or other translation functions in the theme as they serve no purpose but to slow down page rendering.</p>
+
+<h4>URLs</h4>
+
+<p>WordPress includes myriad functions for building URLs, and these should always be used instead of manual URL construction.</p>
+
+<ul>
+<li>For front-end URLs, home_url() is used to build URLs relative to the site URL.</li>
+<li>For admin URLs, admin_url() is used to build URLs relative to the site&#39;s WP Admin.</li>
+<li>If query strings are needed, add<em>query</em>arg() should always be used, in conjunction with the aforementioned URL functions.</li>
+<li>If URLs are to be constructed from more than two pieces (base URL and relative path thereto), path<em>join() should be used. Note that the second parameter cannot contain a leading slash, otherwise path</em>join() will return only the second argument.</li>
+</ul>
+
+<p>When referencing files within the theme, the following two functions should be used:</p>
+
+<ul>
+<li>get<em>stylesheet</em>directory_uri() - for child themes or themes that won&#39;t have parent/child setup</li>
+<li>get<em>template</em>directory_uri() - only to be used in a parent/child theme setup when the parent theme is referenced</li>
+</ul>
+
+<p>Related to the foregoing statement, bloginfo() and get_bloginfo() should never be used to reference theme directories.</p>
+
+<p>Root-relative URLs should never be used as we can hardly predict what a client may do with a site once we deliver a final product to them.</p>
 
 </div>
 
