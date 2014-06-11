@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Frontend Standards &middot; Developer Handbook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="../public/logo2x.png" width="145" height="48">
+      <p class="lead">Developer Handbook</p>
+    </div>
+
+    <ul class="sidebar-nav">
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+      
+        
+          
+            <li class="sidebar-nav-item active">
+              <a href="/frontend/">Frontend Standards</a>
+            </li>
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/">WordPress Standards</a>
+            </li>
+          
+        
+      
+    </ul>
+
+    <p>&copy; 2014. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Frontend Standards</h1>
+  <p><a href="https://docs.google.com/a/thinkoomph.com/document/d/19PMZOq4KUQa9BYkbfmevRWf5DaDo52GDPQlczMa20_k/edit#">Guidelines</a><br />
+<a href="https://docs.google.com/a/thinkoomph.com/document/d/1hgiQ7hrnfy7gWO9bv1twdcyyvBk2oSNekFxUZgunrGA/edit#">Tech Stack</a></p>
+
+<h2>Css</h2>
+
+<h5>!important</h5>
+
+<p>There is only one use case for !important. The use case is to style a plugin or element
+not in your code base which has a inline style or a !important itself. If you have to use an !important
+please add a comment after it stating what you are overridding.</p>
+
+<div class="highlight"><pre><code class="scss"><span class="nc">.disqus</span> <span class="nt">h2</span> <span class="p">{</span>
+    <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span> <span class="nv">!important</span><span class="p">;</span> <span class="c1">// Overriding inline style on Disqus plugin</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h5>Z-index</h5>
+
+<p>Only use high z-indexs when needed. If you use one please leave a comment to let people
+know the reason for it.</p>
+
+<div class="highlight"><pre><code class="scss"><span class="nt">header</span> <span class="p">{</span>
+    <span class="na">position</span><span class="o">:</span> <span class="no">fixed</span><span class="p">;</span>
+    <span class="na">z-index</span><span class="o">:</span> <span class="mi">99999999</span><span class="p">;</span> <span class="c1">// This sticky-nav needs to be above google ads which can have a very high z-index</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Preprocessors</h2>
+
+<h3>Sass</h3>
+
+<p>We use Sass as our default CSS preprocessor (in its dialect SCSS). Sass is &quot;the most mature, stable, and powerful
+professional grade CSS extension language in the world.&quot; You should always have the latest version of Sass installed.
+Visit <a href="http://http://sass-lang.com/">Sass</a> to learn more.</p>
+
+<p><strong>Never edit CSS files directly.</strong> You should always edit the corresponding <code>.scss</code> file. If you are
+not familiar with SCSS you can write pure CSS which is actually valid SCSS.</p>
+
+<h5>Nesting</h5>
+
+<p>You should try and never nest your SASS more than three layers deep. This will lead to long and ultra specific selectors
+in your comiled CSS. As of Sass 3.3 you can use @at-root to break out of your nesting at anytime.</p>
+
+<div class="highlight"><pre><code class="scss"><span class="k">@media</span> <span class="nt">print</span> <span class="p">{</span>
+  <span class="nc">.page</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="mi">8</span><span class="kt">in</span> <span class="nv">!important</span><span class="p">;</span>
+    <span class="k">@at-root</span> <span class="o">(</span><span class="nt">without</span><span class="nd">:</span> <span class="nt">media</span><span class="o">)</span> <span class="p">{</span>
+      <span class="na">width</span><span class="o">:</span> <span class="mi">960</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>outputs</p>
+
+<div class="highlight"><pre><code class="css"><span class="k">@media</span> <span class="nt">print</span> <span class="p">{</span>
+  <span class="nc">.page</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">8in</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nc">.page</span> <span class="p">{</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">960px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Frameworks</h2>
+
+<p>We use Foundation as our default CSS frontend framework. Foundation is &quot;The most advanced responsive
+front-end framework in the world.&quot; It provides a fast simple way to protype and build our sites.
+Visit <a href="http://http://foundation.zurb.com/">Foundation</a> to learn more.</p>
+
+<h2>Javascript</h2>
+
+<h2>Build Systems</h2>
+
+<h3>Gulp.js</h3>
+
+<p><a href="http://gulpjs.com/"><img src="https://raw2.github.com/gulpjs/artwork/master/gulp-2x.png" width="80" alt="Built with Gulp"></a></p>
+
+<h4>Dependencies</h4>
+
+<p>Majors:</p>
+
+<ul>
+<li>Node.js</li>
+<li>Ruby</li>
+</ul>
+
+<p>Secondaries:</p>
+
+<ul>
+<li>Node: npm</li>
+<li>Ruby: Sass 3.3.x</li>
+</ul>
+
+<p>After you&#39;ve set this stuff up please run</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ npm install -g gulp
+</code></pre></div>
+<p>Open your .bash<em>profile or .bash</em>rc file and enter the following line</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">ulimit -S -n 8192
+</code></pre></div>
+<p>This installs the Gulp command line tools
+Afterwards please run</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ npm install
+</code></pre></div>
+<p>in your project&#39;s directory.
+This will install all the things you need for running the gulp-tasks
+automatically.</p>
+
+<p>Now Gulp should be installed and all you need to type is gulp to run it</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ gulp
+</code></pre></div>
+</div>
+
+    </div>
+
+  </body>
+</html>
