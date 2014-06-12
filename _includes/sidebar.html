@@ -1,7 +1,7 @@
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <img src="/public/logo2x.png" width="145" height="48">
+      <img src="public/logo2x.png" width="145" height="48">
       <p class="lead">{{ site.description }}</p>
     </div>
 
@@ -17,7 +17,7 @@
         {% if node.title != null %}
           {% if node.layout == "page" %}
             <li class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}">
-              <a href="developer-handbook/{{ node.url }}">{{ node.title }}</a>
+              <a href="/developer-handbook/{{ node.url }}">{{ node.title }}</a>
             </li>
           {% endif %}
         {% endif %}
