@@ -3,9 +3,6 @@ layout: page
 title: Frontend Standards
 ---
 
-<a href="https://docs.google.com/a/thinkoomph.com/document/d/19PMZOq4KUQa9BYkbfmevRWf5DaDo52GDPQlczMa20_k/edit#">Guidelines</a><br />
-<a href="https://docs.google.com/a/thinkoomph.com/document/d/1hgiQ7hrnfy7gWO9bv1twdcyyvBk2oSNekFxUZgunrGA/edit#">Tech Stack</a>
-
 ## Css
 
 ##### !important
